@@ -1,4 +1,5 @@
 import torch
+import math
 
 query=torch.tensor([1.0,0.0,1.0])
 
@@ -14,10 +15,30 @@ print(score1)
 print("Score2:")
 print(score2)
 
-scores= torch.tensor([score1,score2])
-weights=torch.softmax(scores,dim=0)
+#scores= torch.tensor([score1,score2])
+#weights=torch.softmax(scores,dim=0)
 
-print("Attention weights")
+#print("Attention weights")
+#print(weights)
+
+#value1 = torch.tensor([10.0, 0.0])
+#value2 = torch.tensor([0.0, 10.0])
+
+#output = weights[0] * value1 + weights[1] * value2
+
+#print("Attention output:")
+#print(output)
+
+scores =torch.stack([score1,score2])
+d_k = query.shape[0]
+scaled_scores=scores/math.sqrt(d_k)
+
+weights= torch.softmax(scaled_scores,dim=0)
+
+print("Scaled scores")
+print(scaled_scores)
+
+print("scaled attention weights")
 print(weights)
 
 value1 = torch.tensor([10.0, 0.0])
