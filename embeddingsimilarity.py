@@ -16,3 +16,4 @@ print("Similarity A and B")
 print(similarity_ab)
 print("Similarity A and C")
 print(similarity_ac)
+
